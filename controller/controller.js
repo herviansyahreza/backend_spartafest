@@ -96,16 +96,16 @@ const ketua = async (req,res) => {
                 if (user instanceof Error) {
                     throw new Error(user)
                 }
-            } catch {
+            } catch (error){
                 return res.status(helper.status.error).json(helper.errorMessage)
             }
-        } catch {
+        } catch (error) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
-    } catch (err) {
+    } catch (error) {
         return res.status(helper.status.error).json(helper.errorMessage)
     }
-    res.send(helper.status.success).json(helper.successMessage)
+    res.status(helper.status.success).json(helper.successMessage)
 }
 const insertAnggotaSatu = async (req,res) => {
         try {
@@ -114,10 +114,10 @@ const insertAnggotaSatu = async (req,res) => {
             if (user instanceof Error) {
                 throw new Error(user)
             }
-        } catch (err) {
+        } catch (error) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
-        res.send(helper.status.success).json(helper.successMessage)
+        res.status(helper.status.success).json(helper.successMessage)
 }
 const insertAnggotaDua = async (req,res) => {
         try {
@@ -126,10 +126,10 @@ const insertAnggotaDua = async (req,res) => {
             if (user instanceof Error) {
                 throw new Error(user)
             }
-        } catch (err) {
+        } catch (error) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
-        res.send(helper.status.success).json(helper.successMessage)
+        res.status(helper.status.success).json(helper.successMessage)
 }
 const lombaKelompok = async (req,res) => {
         try {
@@ -141,7 +141,7 @@ const lombaKelompok = async (req,res) => {
         } catch (error) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
-        res.send(helper.status.success).json(helper.successMessage)
+        res.status(helper.status.success).json(helper.successMessage)
 }
 // const lombaKelompok = async (req, res) => {
 //     try {
