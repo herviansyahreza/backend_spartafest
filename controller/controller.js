@@ -247,24 +247,6 @@ const cekEmailTerdaftar = async (req, res) => {
     } catch (error) {
         return res.status(helper.status.error).json(helper.errorMessage)
     }
-    try {
-        user = await service.cekEmailAnggotaSatu(email);
-        if (user instanceof Error) {
-            throw new Error(user)
-        }
-        res.cookie("terdaftar", "terdaftar", { httpOnly: true, sameSite: "strict" })
-    } catch (error) {
-        return res.status(helper.status.error).json(helper.errorMessage)
-    }
-    try {
-        user = await service.cekEmailAnggotaDua(email);
-        if (user instanceof Error) {
-            throw new Error(user)
-        }
-        res.cookie("terdaftar", "terdaftar", { httpOnly: true, sameSite: "strict" })
-    } catch (error) {
-        return res.status(helper.status.error).json(helper.errorMessage)
-    }
 }
 module.exports = {
     register,
