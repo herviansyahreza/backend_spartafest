@@ -22,20 +22,20 @@ const lombakelompok = [
 ]
 const ketua = [
     body(`nama_satu`).notEmpty(),
-    body(`nim_satu`).isInt().isLength({min:12}).notEmpty(),
+    body(`nim_satu`).isLength({min:12}).notEmpty(),
     body(`email_satu`).isEmail().notEmpty(),
     validator 
 ]
 const anggotasatu = [
     body(`ketua`).notEmpty(),
-    body(`nim`).isInt().isLength({min:12}).notEmpty(),
+    body(`nim`).isLength({min:12}).notEmpty(),
     body(`email`).isEmail().notEmpty(),
     body(`ketua`).notEmpty(),
     validator
 ]
 const anggotadua = [
     body(`nama_dua`).notEmpty(),
-    body(`nim_dua`).isInt().isLength({min:12}).notEmpty(),
+    body(`nim_dua`).isLength({min:12}).notEmpty(),
     body(`email_dua`).isEmail().notEmpty(),
     validator
 ]
