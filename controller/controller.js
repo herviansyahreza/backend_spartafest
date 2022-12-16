@@ -100,8 +100,8 @@ const lombaKelompok = async (req, res) => {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
         try {
-            const { bidang_lomba, nama_team, ketua, nim, email, asal_sekolah, kontak, alamat, ktm, nama_satu, nama_dua } = req.body
-            user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_sekolah, kontak, alamat, ktm, nama_satu, nama_dua)
+            const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
+            user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
             if (user instanceof Error) {
                 throw new Error(user)
             }
