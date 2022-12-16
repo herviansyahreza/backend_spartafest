@@ -85,8 +85,9 @@ const insertKelompok = async(bidang_lomba, nama_team, email_ketua , asal_univers
         const dua = await query.query(`SELECT id FROM anggota_dua where email_dua=$1;`, [email_dua])
         let anggota_dua = dua.rows[0];
         console.log(anggota_dua)
-        await db.query('INSERT INTO reg_kelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua) VALUES ($1,$2,$3,$4,$5,$6,$7, $8, $9, $10);',
+        const user = await db.query('INSERT INTO reg_kelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua) VALUES ($1,$2,$3,$4,$5,$6,$7, $8, $9, $10);',
                 [bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua])
+        console.log(user)
     } catch(error) {
         return error
     }
