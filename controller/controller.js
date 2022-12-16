@@ -87,33 +87,41 @@ const lombaKelompok = async (req, res) => {
             if (user instanceof Error) {
                 throw new Error(user)
             }
-        } catch (err) {
-            return res.status(helper.status.error).json(helper.errorMessage)
-        }
-        try {
-            const { nama_dua, nim_dua, email_dua } = req.body
-            user = service.insertAnggotaDua(nama_dua, nim_dua, email_dua)
-            if (user instanceof Error) {
-                throw new Error(user)
-            }
-        } catch (err) {
-            return res.status(helper.status.error).json(helper.errorMessage)
-        }
-        try {
-            const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
-            user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
-            if (user instanceof Error) {
-                throw new Error(user)
-            }
             try {
-                user = service.updateDaftar(email)
+                const { nama_dua, nim_dua, email_dua } = req.body
+                user = service.insertAnggotaDua(nama_dua, nim_dua, email_dua)
                 if (user instanceof Error) {
                     throw new Error(user)
                 }
-            } catch {
+                try {
+                    const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
+                    user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
+                    if (user instanceof Error) {
+                        throw new Error(user)
+                    }
+                    try {
+                        user = service.updateDaftar(email)
+                        if (user instanceof Error) {
+                            throw new Error(user)
+                        }
+                        try {
+                            user = service.nomorUrutKelompok(email)
+                            if (user instanceof Error) {
+                                throw new Error(user)
+                            }
+                        } catch {
+                            return res.status(helper.status.error).json(helper.errorMessage)
+                        }
+                    } catch {
+                        return res.status(helper.status.error).json(helper.errorMessage)
+                    }
+                } catch (error) {
+                    return res.status(helper.status.error).json(helper.errorMessage)
+                }
+            } catch (err) {
                 return res.status(helper.status.error).json(helper.errorMessage)
             }
-        } catch (error) {
+        } catch (err) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
         res.send(helper.status.success).json(helper.successMessage)
