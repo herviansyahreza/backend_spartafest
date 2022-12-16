@@ -70,7 +70,11 @@ const insertAnggotaDua = async(nama_dua, nim_dua, email_dua) => {
 const insertKelompok = async(bidang_lomba, nama_team, ketua, nim, email, asal_sekolah, kontak, alamat, nama_satu, nim_satu, email_satu, nama_dua, nim_dua, email_dua) => {
     try {
         await query.query('INSERT INTO anggota_satu(nama_satu, nim_satu, email_satu) VALUES ($1,$2,$3);', [nama_satu, nim_satu, email_satu])
-        await query.query('INSERT INTO anggota_satu(nama_dua, nim_dua, email_dua) VALUES ($1,$2,$3);', [nama_dua, nim_dua, email_dua])
+        try {
+            await query.query('INSERT INTO anggota_satu(nama_dua, nim_dua, email_dua) VALUES ($1,$2,$3);', [nama_dua, nim_dua, email_dua])
+        } catch (error) {
+            return error
+        }
         const anggota_satu = await query.query(`SELECT * FROM anggota_satu where nama_satu=$1`, [nama_satu])
         const anggota_dua = await query.query(`SELECT * FROM anggota_satu where nama_dua=$1`, [nama_dua])
         await db.query('INSERT INTO reg_kelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua) VALUES ($1,$2,$3,$4,$5,$6,$7, $8, $9, $10);',
