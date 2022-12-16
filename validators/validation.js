@@ -15,20 +15,22 @@ const login = [
 ]
 
 const lombakelompok = [
-    body(`nama_kelompok`).isLength({min:6}).notEmpty(),
+    body(`nama_tim`).notEmpty(),
     body(`ketua`).isLength({min:6}).isString().notEmpty(),
-    body(`nim`).isInt().isLength({min:12}).notEmpty(),
-    body(`email`).isEmail().notEmpty(),
-    body('asal_sekolah').notEmpty(),
-    body(`alamat`).notEmpty(),
-    body(`nama_satu`).notEmpty(),
-    body(`nama_dua`).notEmpty(),
+    body(`kontak`).isInt().isLength({min:12}).notEmpty(),
     validator
 ]
-const anggotasatu = [
+const ketua = [
     body(`nama_satu`).notEmpty(),
     body(`nim_satu`).isInt().isLength({min:12}).notEmpty(),
     body(`email_satu`).isEmail().notEmpty(),
+    validator 
+]
+const anggotasatu = [
+    body(`ketua`).notEmpty(),
+    body(`nim`).isInt().isLength({min:12}).notEmpty(),
+    body(`email`).isEmail().notEmpty(),
+    body(`ketua`).notEmpty(),
     validator
 ]
 const anggotadua = [
@@ -41,7 +43,7 @@ const lombaindividu = [
     body(`nama`).isLength({min:6}).isString().notEmpty(),
     body(`nim`).isInt().isLength({min:12}).notEmpty(),
     body(`email`).isEmail().notEmpty(),
-    body('asal_sekolah').notEmpty(),
+    body('asal_universitas').notEmpty(),
     body(`alamat`).notEmpty(),
     validator
 ]
@@ -51,5 +53,6 @@ module.exports = {
     lombakelompok,
     lombaindividu,
     anggotadua,
-    anggotasatu
+    anggotasatu,
+    ketua
 }

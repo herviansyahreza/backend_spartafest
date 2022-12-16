@@ -116,30 +116,7 @@ const nomorUrutKelompok = async(email) => {
         return error
     }
 }
-const cekEmailAnggotaSatu = async(email) => {
-    try {
-        const result = await query.query('SELECT id FROM anggota_satu WHERE email=$1;', [email])
-        if(result.rowCount>0) {
-            return (true)
-        } else {
-            return (false)
-        }
-    } catch (error) {
-        return error
-    }
-}
-const cekEmailAnggotaDua = async(email) => {
-    try {
-        const result = await query.query('SELECT id FROM anggota_dua WHERE email=$1;', [email])
-        if(result.rowCount>0) {
-            return (true)
-        } else {
-            return (false)
-        }
-    } catch (error) {
-        return error
-    }
-}
+
 module.exports = {
     register,
     login,
@@ -152,7 +129,5 @@ module.exports = {
     insertIndividu,
     nomorUrutIndividu,
     nomorUrutKelompok,
-    cekEmailAnggotaSatu,
-    cekEmailAnggotaDua,
     insertKetua
 }
