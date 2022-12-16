@@ -105,8 +105,8 @@ const insertAnggotaDua = async (req,res) => {
 }
 const lombaKelompok = async (req,res) => {
         try {
-            const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
-            user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
+            const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nim_satu, email_satu, nama_dua, nim_dua, email_dua} = req.body
+            user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nim_satu, email_satu, nama_dua, nim_dua, email_dua)
             if (user instanceof Error) {
                 throw new Error(user)
             }
