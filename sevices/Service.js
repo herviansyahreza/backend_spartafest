@@ -54,7 +54,7 @@ const cekDaftar = async(email) => {
 }
 const insertAnggotaSatu = async(nama_satu, nim_satu, email_satu) => {
     try {
-        await query.query('INSERT INTO anggota_satu(nama_satu, nim_satu, email_satu) VALUES ($1,$2,$3);', [nama_satu, nim_satu, email_satu])
+        await query.query('INSERT INTO anggota_dua(nama_satu, nim_satu, email_satu) VALUES ($1,$2,$3);', [nama_satu, nim_satu, email_satu])
     } catch (error) {
         return error
     }
