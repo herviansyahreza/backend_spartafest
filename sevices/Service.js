@@ -68,7 +68,7 @@ const insertAnggotaDua = async(nama_dua, nim_dua, email_dua) => {
 }
 const insertKetua = async (ketua, nim, email, asal_universitas) => {
     try {
-        await query.query('INSERT INTO ketua(ketua, nim, email, asal_universitas) VALUES ($1,$2,$3);', [ketua, nim, email, asal_universitas])
+        await query.query('INSERT INTO ketua(ketua, nim, email, asal_universitas) VALUES ($1,$2,$3,$4);', [ketua, nim, email, asal_universitas])
     } catch (error) {
         return error
     }
