@@ -44,10 +44,7 @@ const cekDaftar = async(email) => {
     try{
         const cek_daftar = await query.query('SELECT cek_daftar FROM users WHERE email=$1;', [email])
         let cek = cek_daftar.rows[0].cek_daftar
-        if(cek == 'terdaftar') {
-            return (true)
-        } else 
-            return (false)   
+        return cek 
     } catch (error){
         return (error)
     }
