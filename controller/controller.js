@@ -86,6 +86,15 @@ const insertAnggotaSatu = async (req,res) => {
             if (user instanceof Error) {
                 throw new Error(user)
             }
+            try {
+                const { nama_dua, nim_dua, email_dua } = req.body
+                user = service.insertAnggotaDua(nama_dua, nim_dua, email_dua)
+                if (user instanceof Error) {
+                    throw new Error(user)
+                }
+            } catch (err) {
+                return res.status(helper.status.error).json(helper.errorMessage)
+            }
         } catch (err) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
