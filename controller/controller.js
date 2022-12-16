@@ -243,7 +243,7 @@ const cekEmailTerdaftar = async (req, res) => {
         if (user instanceof Error) {
             throw new Error(user)
         }
-        res.cookie("terdaftar", "terdaftar", { httpOnly: true, sameSite: "strict" })
+        res.status(helper.status.success).json({cek: user})
     } catch (error) {
         return res.status(helper.status.error).json(helper.errorMessage)
     }
