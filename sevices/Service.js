@@ -54,14 +54,14 @@ const cekDaftar = async(email) => {
 }
 const insertAnggotaSatu = async(nama_satu, nim_satu, email_satu) => {
     try {
-        await query.query('INSERT INTO anggota_dua(nama_satu, nim_satu, email_satu) VALUES ($1,$2,$3);', [nama_satu, nim_satu, email_satu])
+        await query.query('INSERT INTO anggota_satu(nama_satu, nim_satu, email_satu) VALUES ($1,$2,$3);', [nama_satu, nim_satu, email_satu])
     } catch (error) {
         return error
     }
 }
 const insertAnggotaDua = async(nama_dua, nim_dua, email_dua) => {
     try {
-        await query.query('INSERT INTO anggota_satu(nama_dua, nim_dua, email_dua) VALUES ($1,$2,$3);', [nama_dua, nim_dua, email_dua])
+        await query.query('INSERT INTO anggota_dua(nama_dua, nim_dua, email_dua) VALUES ($1,$2,$3);', [nama_dua, nim_dua, email_dua])
     } catch (error) {
         return error
     }
