@@ -80,7 +80,7 @@ const insertKelompok = async(bidang_lomba, nama_team, ketua, nim, email, asal_se
 
 const insertIndividu = async(bidang_lomba, nama, nim, email, kontak, asal_sekolah, alamat) => {
     try {
-        await db.query('INSERT INTO reg_individu(bidang_lomba, nama, nim, email, kontak, asal_universitas, alamat) VALUES ($1,$2,$3,$4,$5,$6, $7);', [bidang_lomba, nama, nim, email, asal_sekolah, alamat])
+        await db.query('INSERT INTO reg_individu(bidang_lomba, nama, nim, email,  asal_universitas, kontak, alamat) VALUES ($1,$2,$3,$4,$5,$6, $7);', [bidang_lomba, nama, nim, email, asal_sekolah, kontak, alamat])
     } catch(error) {
         return error
     }
