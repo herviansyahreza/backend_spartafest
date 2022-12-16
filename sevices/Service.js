@@ -76,9 +76,12 @@ const insertKetua = async (ketua, nim, email, asal_universitas) => {
 
 const insertKelompok = async(bidang_lomba, nama_team, email_ketua , asal_universitas, kontak, alamat, email_satu, email_dua) => {
     try {
-        const ketua = await query.query(`SELECT id FROM ketua where email=$1; `, [email_ketua])
-        const anggota_satu = await query.query(`SELECT id FROM anggota_satu where email_satu=$1;`, [email_satu])
-        const anggota_dua = await query.query(`SELECT id FROM anggota_dua where email_dua=$1;`, [email_dua])
+        const getketua = await query.query(`SELECT id FROM ketua where email=$1; `, [email_ketua])
+        let ketua = getketua.rows[0].id;
+        const satu = await query.query(`SELECT id FROM anggota_satu where email_satu=$1;`, [email_satu])
+        let anggota_satu = satu.rows[0].id;
+        const dua = await query.query(`SELECT id FROM anggota_dua where email_dua=$1;`, [email_dua])
+        let anggota_dua = dua.rows[0].id
         await db.query('INSERT INTO reg_kelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua) VALUES ($1,$2,$3,$4,$5,$6,$7, $8, $9, $10);',
                 [bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua])
     } catch(error) {
