@@ -79,56 +79,101 @@ const verify = async (req, res) => {
         return res.status(helper.status.error).json(helper.errorMessage)
     }
 }
-const lombaKelompok = async (req, res) => {
-    try {
+const insertAnggotaSatu = async (req,res) => {
         try {
             const { nama_satu, nim_satu, email_satu } = req.body
             user = service.insertAnggotaSatu(nama_satu, nim_satu, email_satu)
             if (user instanceof Error) {
                 throw new Error(user)
             }
-            try {
-                const { nama_dua, nim_dua, email_dua } = req.body
-                user = service.insertAnggotaDua(nama_dua, nim_dua, email_dua)
-                if (user instanceof Error) {
-                    throw new Error(user)
-                }
-                try {
-                    const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
-                    user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
-                    if (user instanceof Error) {
-                        throw new Error(user)
-                    }
-                    try {
-                        user = service.updateDaftar(email)
-                        if (user instanceof Error) {
-                            throw new Error(user)
-                        }
-                        try {
-                            user = service.nomorUrutKelompok(email)
-                            if (user instanceof Error) {
-                                throw new Error(user)
-                            }
-                        } catch {
-                            return res.status(helper.status.error).json(helper.errorMessage)
-                        }
-                    } catch {
-                        return res.status(helper.status.error).json(helper.errorMessage)
-                    }
-                } catch (error) {
-                    return res.status(helper.status.error).json(helper.errorMessage)
-                }
-            } catch (err) {
-                return res.status(helper.status.error).json(helper.errorMessage)
+        } catch (err) {
+            return res.status(helper.status.error).json(helper.errorMessage)
+        }
+        res.send(helper.status.success).json(helper.successMessage)
+}
+const insertAnggotaDua = async (req,res) => {
+        try {
+            const { nama_dua, nim_dua, email_dua } = req.body
+            user = service.insertAnggotaDua(nama_dua, nim_dua, email_dua)
+            if (user instanceof Error) {
+                throw new Error(user)
             }
         } catch (err) {
             return res.status(helper.status.error).json(helper.errorMessage)
         }
         res.send(helper.status.success).json(helper.successMessage)
-    } catch (error) {
-        return res.status(helper.status.error).json(helper.errorMessage)
-    }
 }
+const lombaKelompok = async (req,res) => {
+        try {
+            const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
+            user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
+            if (user instanceof Error) {
+                throw new Error(user)
+            }
+            try {
+                user = service.updateDaftar(email)
+                if (user instanceof Error) {
+                    throw new Error(user)
+                }
+                try {
+                    user = service.nomorUrutKelompok(email)
+                    if (user instanceof Error) {
+                        throw new Error(user)
+                    }
+                } catch {
+                    return res.status(helper.status.error).json(helper.errorMessage)
+                }
+            } catch {
+                return res.status(helper.status.error).json(helper.errorMessage)
+            }
+
+        } catch (error) {
+            return res.status(helper.status.error).json(helper.errorMessage)
+        }
+        res.send(helper.status.success).json(helper.successMessage)
+}
+// const lombaKelompok = async (req, res) => {
+//     try {
+//         try {
+//             const { nama_satu, nim_satu, email_satu } = req.body
+//             user = service.insertAnggotaSatu(nama_satu, nim_satu, email_satu)
+//             if (user instanceof Error) {
+//                 throw new Error(user)
+//             }
+//         } catch (err) {
+//             return res.status(helper.status.error).json(helper.errorMessage)
+//         }
+//         try {
+//             const { nama_dua, nim_dua, email_dua } = req.body
+//             user = service.insertAnggotaDua(nama_dua, nim_dua, email_dua)
+//             if (user instanceof Error) {
+//                 throw new Error(user)
+//             }
+//         } catch (err) {
+//             return res.status(helper.status.error).json(helper.errorMessage)
+//         }
+//         try {
+//             const { bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua } = req.body
+//             user = service.insertKelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, nama_satu, nama_dua)
+//             if (user instanceof Error) {
+//                 throw new Error(user)
+//             }
+//             try {
+//                 user = service.updateDaftar(email)
+//                 if (user instanceof Error) {
+//                     throw new Error(user)
+//                 }
+//             } catch {
+//                 return res.status(helper.status.error).json(helper.errorMessage)
+//             }
+//         } catch (error) {
+//             return res.status(helper.status.error).json(helper.errorMessage)
+//         }
+//         res.send(helper.status.success).json(helper.successMessage)
+//     } catch (error) {
+//         return res.status(helper.status.error).json(helper.errorMessage)
+//     }
+// }
 const lombaIndividu = (req, res) => {
     const { bidang_lomba, nama, nim, email, asal_universitas, kontak, alamat} = req.body;
     try {
@@ -220,4 +265,6 @@ module.exports = {
     cekEmailTerdaftar,
     nomorUrutKelompok,
     nomorUrutIndividu,
+    insertAnggotaSatu,
+    insertAnggotaDua
 }
