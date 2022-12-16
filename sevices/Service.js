@@ -74,7 +74,7 @@ const insertKetua = async (ketua, nim, email, asal_universitas) => {
     }
 }
 
-const insertKelompok = async(bidang_lomba, nama_tim, email_ketua , asal_universitas, kontak, alamat, email_satu, email_dua) => {
+const insertKelompok = async(bidang_lomba, nama_tim, email_ketua , kontak, alamat, email_satu, email_dua) => {
     try {
         const getketua = await query.query(`SELECT id FROM ketua where email=$1; `, [email_ketua])
         let ketua = getketua.rows[0].id;
@@ -86,7 +86,7 @@ const insertKelompok = async(bidang_lomba, nama_tim, email_ketua , asal_universi
         let anggota_dua = dua.rows[0].id;
         console.log(anggota_dua)
         await db.query('INSERT INTO reg_kelompok(bidang_lomba, nama_team, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua) VALUES ($1,$2,$3,$4,$5,$6,$7, $8, $9, $10);',
-                [bidang_lomba, nama_tim, ketua, nim, email, asal_universitas, kontak, alamat, anggota_satu, anggota_dua])
+                [bidang_lomba, nama_tim, ketua, nim, email, kontak, alamat, anggota_satu, anggota_dua])
     } catch(error) {
         return error
     }
