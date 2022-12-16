@@ -122,9 +122,9 @@ const lombaKelompok = async (req, res) => {
     }
 }
 const lombaIndividu = (req, res) => {
-    const { bidang_lomba, nama, nim, email, asal_sekolah, kontak, alamat} = req.body;
+    const { bidang_lomba, nama, nim, email, asal_universitas, kontak, alamat} = req.body;
     try {
-        user = service.insertIndividu(bidang_lomba, nama, nim, email, asal_sekolah, kontak, alamat)
+        user = service.insertIndividu(bidang_lomba, nama, nim, email, asal_universitas, kontak, alamat)
         if (user instanceof Error) {
             throw new Error(user)
         }
