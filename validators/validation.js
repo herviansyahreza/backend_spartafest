@@ -16,7 +16,6 @@ const login = [
 
 const lombakelompok = [
     body(`nama_tim`).notEmpty(),
-    body(`ketua`).isLength({min:6}).isString().notEmpty(),
     body(`kontak`).isLength({min:12}).notEmpty(),
     validator
 ]
